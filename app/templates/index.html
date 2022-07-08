@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for i in messages %}
+    <div>{{i}}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="{{url_for('.create_fingerprint')}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="audio">
+        <button>Create Audio Fingerprint</button>
+    </form>
+
+    <form action="{{url_for('.match')}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="audio">
+        <button>Match Audio</button>
+    </form>
+    {% if matches %} 
+    <h2>Matches</h2> 
+    {% for i in matches %} 
+    <div>
+     {{i.record}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>

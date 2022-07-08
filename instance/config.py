@@ -1,0 +1,4 @@
+
+
+SECRET_KEY = '2323'
+UPLOADS_FOLDER = 'upload'
